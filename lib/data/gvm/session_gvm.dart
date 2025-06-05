@@ -81,7 +81,15 @@ class SessionGVM extends Notifier<SessionModel> {
     Navigator.pushNamed(mContext, "/post/list");
   }
 
-  Future<void> logout() async {}
+  Future<void> logout() async {
+    await secureStorage.write(key: "accessToken", value: ""); // 1. 토큰 초기화
+
+    state = SessionModel(); // 2. 세션 초기화
+
+    dio.options.headers["Authorization"] = ""; // 3. 헤더 제거
+
+    Navigator.pushNamed(mContext, "/login"); // 4. 로그인 화면으로 이동
+  }
 }
 
 /// 3. 창고 데이터 타입 (불변 아님)
