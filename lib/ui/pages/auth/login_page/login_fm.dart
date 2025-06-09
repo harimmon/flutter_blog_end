@@ -15,7 +15,7 @@ class LoginFM extends Notifier<LoginModel> {
 
   void username(String username) {
     final error = validateUsername(username);
-    print("error : ${error}");
+    // print("error : ${error}");
     state = state.copyWith(
       username: username,
       usernameError: error,
